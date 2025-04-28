@@ -19,21 +19,26 @@ export function Item({ id, content, isChecked, onRemoveTask, onToggleTask }: Ite
   }
 
   return (
-    <div className={styles.item}>
-      <div className={styles.itemInfo}>
-        <label htmlFor="checkbox" onClick={handleFinishedTask}>
-          <input readOnly type="checkbox" />
-          <span className={styles.checkbox}>
-            <Check className={isChecked ? styles.checkboxChecked : styles.checkboxUnchecked} size={14} />
-          </span>
+    <div className={styles.itemInfo}>
+      <div className={styles.item}>
+        <div>
+          <label htmlFor="checkbox" onClick={handleFinishedTask} className={styles.itemLabel}>
+            <input readOnly type="checkbox" />
+            <span className={styles.checkbox}>
+              <Check className={isChecked ? styles.checkboxChecked : styles.checkboxUnchecked} size={14} />
+            </span>
 
-          <p className={isChecked ? styles.contentChecked : styles.contentUnchecked}>{content}</p>
-        </label>
+            <p className={isChecked ? styles.contentChecked : styles.contentUnchecked}>{content}</p>
+          </label>
+        </div>
+
+        <button onClick={handleRemoveTask} className={styles.itemButton}>
+          <Trash size={18} />
+        </button>
       </div>
-
-      <button onClick={handleRemoveTask} className={styles.itemButton}>
-        <Trash size={18} />
-      </button>
+      <div>
+        <time>Publicado há 1h</time>
+      </div>
     </div>
   );
 }
