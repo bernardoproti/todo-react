@@ -24,7 +24,7 @@ export function Item({ id, content, isChecked, onRemoveTask, onToggleTask }: Ite
         <label htmlFor="checkbox" onClick={handleFinishedTask}>
           <input readOnly type="checkbox" />
           <span className={styles.checkbox}>
-            <Check className={isChecked ? styles.checkboxChecked : styles.checkboxUnchecked} size={16} />
+            <Check className={isChecked ? styles.checkboxChecked : styles.checkboxUnchecked} size={14} />
           </span>
 
           <p className={isChecked ? styles.contentChecked : styles.contentUnchecked}>{content}</p>
@@ -32,7 +32,7 @@ export function Item({ id, content, isChecked, onRemoveTask, onToggleTask }: Ite
       </div>
 
       <button onClick={handleRemoveTask} className={styles.itemButton}>
-        <Trash size={24} />
+        <Trash size={18} />
       </button>
     </div>
   );

@@ -32,7 +32,7 @@
   font-size: .75rem;
   width: 1.5625rem;
   height: 1.1875rem;
-  padding: .5rem .125rem;
+  padding: .125rem .5rem;
   background: var(--gray-400);
   color: var(--gray-200);
   border-radius: 999px;
