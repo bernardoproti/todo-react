@@ -1,0 +1,20 @@
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 1.5rem;
+  gap: 1rem;
+  text-align: center;
+  border-top: 1px solid var(--gray-400);
+  border-radius: 8px;
+}
+
+.empty p:first-child {
+  font-weight: bold;
+  color: var(--gray-300);
+}
+
+.empty p:last-child {
+  color: var(--gray-300);
+}

@@ -1,0 +1,44 @@
+.taskInfo {
+  display: flex;
+  flex: 1;
+
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 1.5rem;
+}
+
+.taskInfo aside {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  font-weight: bold;
+  font-size: .875rem
+}
+
+.taskInfo aside:first-child p {
+  color: var(--blue);
+}
+
+.taskInfo aside:last-child p {
+  color: var(--purple);
+}
+
+.taskInfo aside span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: .75rem;
+  width: 1.5625rem;
+  height: 1.1875rem;
+  padding: .5rem .125rem;
+  background: var(--gray-400);
+  color: var(--gray-200);
+  border-radius: 999px;
+}
+
+.taskInfo aside:last-child span {
+  width: 100%;
+}
+
