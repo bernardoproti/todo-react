@@ -1,3 +1,5 @@
+import { format, formatDistanceToNow } from 'date-fns';
+import { ptBR } from 'date-fns/locale/pt-BR'
 import { Trash, Check } from 'phosphor-react';
 import styles from './Item.module.css';
 
@@ -5,11 +7,23 @@ interface ItemProps {
   id: number;
   content: string;
   isChecked: boolean;
+  publishedAt: Date;
   onRemoveTask: (taskId: number) => void;
   onToggleTask: (taskId: number) => void;
 }
 
-export function Item({ id, content, isChecked, onRemoveTask, onToggleTask }: ItemProps) {
+export function Item({
+  id, content, isChecked, publishedAt, onRemoveTask, onToggleTask
+}: ItemProps) {
+  const publishedDateRelativeToNow = formatDistanceToNow(publishedAt, {
+    locale: ptBR,
+    addSuffix: true
+})
+
+  const publishedDateFormatted = format(publishedAt, "dd 'de' MMMM 'às' HH:mm'h'", {
+    locale: ptBR
+  })
+
   function handleRemoveTask() {
     onRemoveTask(id);
   }
@@ -37,7 +51,7 @@ export function Item({ id, content, isChecked, onRemoveTask, onToggleTask }: Ite
         </button>
       </div>
       <div>
-        <time>Publicado há 1h</time>
+        <time title={publishedDateFormatted} dateTime={publishedAt.toISOString()}>{publishedDateRelativeToNow}</time>
       </div>
     </div>
   );

@@ -12,6 +12,7 @@ export function App() {
     id: number;
     content: string;
     isChecked: boolean;
+    publishedAt: Date;
   }
 
   interface TaskCounter {
@@ -20,7 +21,7 @@ export function App() {
       id: number;
       status: boolean;
     }[];
-  }  
+  }
 
   const [tasks, setTasks] = useState<Task[]>([]);
   const [tasksCounter, setTasksCounter] = useState<TaskCounter>({
@@ -32,10 +33,12 @@ export function App() {
     const newTask = {
       id: tasks.length + 1,
       content: taskContent,
-      isChecked: false
+      isChecked: false,
+      publishedAt: new Date()
     }
 
     setTasks([...tasks, newTask])
+
     const newTasksCounter = {
       created: tasksCounter.created + 1,
       finished: [
@@ -46,6 +49,7 @@ export function App() {
         }
       ],
     }
+
     setTasksCounter(newTasksCounter);
   }
 
@@ -65,32 +69,32 @@ export function App() {
       created: tasksCounter.created - 1,
       finished: counterTasksWithoutRemovedOne,
     };
-    
+
     setTasksCounter(newTasksCounter);
   }
 
-  function toggleTask(taskId: number) {  
+  function toggleTask(taskId: number) {
     const tasksWithToggledOne = tasks.map((task) => {
       if (task.id === taskId) {
         return { ...task, isChecked: !task.isChecked };
       }
       return task;
     });
-  
+
     setTasks(tasksWithToggledOne);
-  
+
     const tasksCounterWithToggledOne = tasksCounter.finished.map((task) => {
       if (task.id === taskId) {
         return { ...task, status: !task.status };
       }
       return task;
     });
-  
+
     setTasksCounter((prevCounter) => ({
       ...prevCounter,
       finished: tasksCounterWithToggledOne,
     }));
-  }  
+  }
 
   return (
     <>
@@ -100,17 +104,18 @@ export function App() {
           <Input onAddTask={addNewTask} />
         </div>
         <div>
-          <ListHeader created={tasksCounter.created} finished={tasksCounter.finished}/>
+          <ListHeader created={tasksCounter.created} finished={tasksCounter.finished} />
           {
             tasks.length === 0 ? (
               <Empty />
             ) : (
               tasks.map((task) => (
-                <Item 
+                <Item
                   key={task.id}
                   id={task.id}
                   content={task.content}
                   isChecked={task.isChecked}
+                  publishedAt={task.publishedAt}
                   onRemoveTask={removeTask}
                   onToggleTask={toggleTask}
                 />
